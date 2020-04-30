@@ -8,8 +8,9 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
-class CategoryTableViewController: UITableViewController {
+class CategoryTableViewController: SwipeCellViewController {
     
     var categories: Results<Category>?
     
@@ -19,7 +20,15 @@ class CategoryTableViewController: UITableViewController {
         super.viewDidLoad()
       
         loadCategories()
+        tableView.separatorStyle = .none
        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let navBar = navigationController?.navigationBar else {
+                       fatalError("navigationBar does not exist")
+                   }
+        navBar.backgroundColor = UIColor(hexString: "1D9FB6")
     }
     //Mark:- TableView DataSource Method
     
@@ -28,10 +37,18 @@ class CategoryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        cell.textLabel?.text = categories?[indexPath.row].name ?? "NO CATEGORIES ADDED YET"
+        if let category = categories?[indexPath.row]{
+        cell.textLabel?.text = category.name
+            
+            guard let categoryColour = UIColor(hexString: category.colour) else{
+                fatalError()
+            }
         
+        cell.backgroundColor = UIColor(hexString: category.colour)
+            cell.textLabel?.textColor = ContrastColorOf(categoryColour, returnFlat: true)
+        }
         return cell
     }
     
@@ -65,6 +82,20 @@ class CategoryTableViewController: UITableViewController {
         categories = realm.objects(Category.self)
         tableView.reloadData()
     }
+    
+    //Mark:- delete swipe cell
+    
+    override func updateModel(at indexpath: IndexPath) {
+        if let categoryForDeletion = self.categories?[indexpath.row]{
+        do{
+            try self.realm.write{
+                self.realm.delete(categoryForDeletion)
+            }}catch{
+                print("eroor deleting category, \(error)")
+            }}
+    }
+        
+    
   //Mark:- Add New Item
     
     @IBAction func barbuttonPressed(_ sender: UIBarButtonItem) {
@@ -73,6 +104,7 @@ class CategoryTableViewController: UITableViewController {
         let action = UIAlertAction(title: "ADD NEW ITEM", style: .default) { (action) in
             let newCategory = Category()
             newCategory.name = textField.text!
+            newCategory.colour = UIColor.randomFlat().hexValue()
             self.saveCategory(category: newCategory)
             
         }

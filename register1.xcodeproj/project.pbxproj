@@ -17,6 +17,7 @@
 		F4522E44245688280004B32D /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4522E43245688280004B32D /* CategoryTableViewController.swift */; };
 		F4522E4D245689450004B32D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4522E4C245689450004B32D /* Item.swift */; };
 		F4522E4F245689590004B32D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4522E4E245689590004B32D /* Category.swift */; };
+		F49B1B61245A6DD5006BE295 /* SwipeCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49B1B60245A6DD5006BE295 /* SwipeCellViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		F4522E43245688280004B32D /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		F4522E4C245689450004B32D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F4522E4E245689590004B32D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		F49B1B60245A6DD5006BE295 /* SwipeCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCellViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				F4522E43245688280004B32D /* CategoryTableViewController.swift */,
 				F44F92C1245542AF0005901A /* ToDoListViewController.swift */,
+				F49B1B60245A6DD5006BE295 /* SwipeCellViewController.swift */,
 				F4522E50245689610004B32D /* Data Model */,
 			);
 			path = Controller;
@@ -252,6 +255,7 @@
 				F44F92BE245542AF0005901A /* AppDelegate.swift in Sources */,
 				F44F92C0245542AF0005901A /* SceneDelegate.swift in Sources */,
 				F4522E44245688280004B32D /* CategoryTableViewController.swift in Sources */,
+				F49B1B61245A6DD5006BE295 /* SwipeCellViewController.swift in Sources */,
 				F4522E4F245689590004B32D /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
